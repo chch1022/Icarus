@@ -118,6 +118,17 @@ VALIDATION_RULES: Dict[str, Dict[str, Any]] = {
     }
 }
 
+# Application Configuration
+APP_CONFIG: Dict[str, Any] = {
+    'host': '0.0.0.0',
+    'port': 5000,
+    'debug': os.getenv('DEBUG', 'False').lower() == 'true',
+    'max_cashflows': 10,
+    'default_time_horizon': 12,
+    'min_time_horizon': 1,
+    'max_time_horizon': 120
+}
+
 # Currency Formatting
 CURRENCY_CONFIG: Dict[str, Any] = {
     'symbol': '$',

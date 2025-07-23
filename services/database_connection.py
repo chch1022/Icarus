@@ -25,24 +25,6 @@ class DatabaseConnection:
         
         print(f"Connection string: {self.connection_string}")
         
-        # Test the connection on initialization
-        # self._test_connection()
-
-    # def _test_connection(self):
-    #     """Test the connection to make sure it works"""
-    #     try:
-    #         print("Testing database connection...")
-    #         conn = pyodbc.connect(self.connection_string)
-    #         cursor = conn.cursor()
-    #         cursor.execute("SELECT 1 as test")
-    #         result = cursor.fetchone()
-    #         cursor.close()
-    #         conn.close()
-    #         print("✓ Database connection test successful!")
-    #     except Exception as e:
-    #         print(f"❌ Database connection test failed: {e}")
-    #         raise
-
     def _get_connection(self):
         """Get a fresh database connection"""
         try:

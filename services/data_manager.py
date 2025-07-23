@@ -3,7 +3,7 @@ import os
 import pandas as pd
 import datetime
 from dateutil.relativedelta import relativedelta
-from database_connection import DatabaseConnection
+from services.database_connection import DatabaseConnection
 from datetime import datetime, date
 
 
@@ -34,3 +34,29 @@ class DataManager:
         """
         result = self.db_connection.call_db(query)
         return list(zip(result['date'], result['amount_rc']))
+    
+    def calculate_time_horizon_months(self, start_date: datetime.date, end_date: datetime.date) -> int:
+        """
+        Calculate the number of months between two dates.
+        
+        Args:
+            start_date: Period start date
+            end_date: Period end date
+            
+        Returns:
+            Number of months between dates
+        """
+        try:
+            # Calculate the difference in months
+            months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+            
+            # Add partial month if end day is later than start day
+            if end_date.day > start_date.day:
+                months += 1
+            
+            logger.debug(f"Time horizon: {start_date} to {end_date} = {months} months")
+            return max(1, months)  # Ensure at least 1 month
+            
+        except Exception as e:
+            logger.error(f"Error calculating time horizon: {str(e)}")
+            return 1
