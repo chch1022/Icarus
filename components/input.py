@@ -5,7 +5,8 @@ Provides reusable form components for portfolio details, scenarios, and cashflow
 """
 
 from dash import html, dcc
-from config.setting import BCI_COLORS, INPUT_STYLE, BUTTON_STYLES, SCENARIO_CONFIG
+from config.setting import BCI_COLORS, SCENARIO_CONFIG, INPUT_STYLE
+
 
 def create_portfolio_inputs() -> html.Div:
     """
@@ -117,20 +118,4 @@ def create_scenario_inputs() -> html.Div:
         ], className="input-group"),
     ])
 
-def create_cashflow_section() -> html.Div:
-    """
-    Create cashflows input section.
-    
-    Returns:
-        Dash HTML component with cashflow inputs
-    """
-    return html.Div([
-        html.H2("Future Cashflows", className="section-header"),
-        html.Div(id='cashflow-container', children=[]),
-        html.Button(
-            "➕ Add Cashflow",
-            id='add-cashflow-btn',
-            style=BUTTON_STYLES['secondary'],
-            className='add-cashflow-button'
-        ),
-    ])
+

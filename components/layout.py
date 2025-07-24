@@ -9,16 +9,23 @@ from config.setting import BCI_COLORS
 
 def create_main_layout() -> html.Div:
     """
-    Create the main application layout.
+    Create the main application layout with enhanced design.
     
     Returns:
         Dash HTML component with the complete app layout
     """
     return html.Div([
-        # Header
+        # Enhanced Header
         html.Div([
-            html.H1("BCI Nowcasting Tool"),
-            html.P("Scenario-based portfolio valuation forecasting")
+            html.Div([
+                # Header left side
+                html.Div([
+                    html.Div([
+                        html.Img(src="/assets/bci-logo.svg", className="bci-logo"),
+                    ], className="logo-container"),
+
+                ], className="header-left"),
+            ], className="header-content")
         ], className="header"),
         
         # Content
@@ -31,22 +38,11 @@ def create_main_layout() -> html.Div:
             # Calculate Button
             html.Div([
                 html.Button(
-                    "🧮 Run Nowcast Analysis",
+                    "Run Analytics",
                     id='calculate-btn',
-                    style={
-                        'backgroundColor': BCI_COLORS['midnight'],
-                        'color': 'white',
-                        'border': 'none',
-                        'padding': '1rem 2rem',
-                        'borderRadius': '4px',
-                        'fontSize': '11pt',
-                        'fontWeight': 'bold',
-                        'cursor': 'pointer',
-                        'display': 'block',
-                        'margin': '2rem auto'
-                    }
+                    className="calculate-button"
                 )
-            ], style={'textAlign': 'center'}),
+            ], className="button-container"),
             
             # Results Section
             html.Div(id='results-section')
@@ -57,26 +53,21 @@ def create_main_layout() -> html.Div:
 
 def create_input_section() -> html.Div:
     """
-    Create the input section with portfolio details and scenarios.
+    Create the input section with modern card-based layout.
     
     Returns:
         Dash HTML component with input forms
     """
-    from components.input import create_portfolio_inputs, create_scenario_inputs, create_cashflow_section
+    from components.input import create_portfolio_inputs, create_scenario_inputs
     
     return html.Div([
+        # Portfolio Details Card
         html.Div([
-            # Portfolio Details
             create_portfolio_inputs()
-        ], style={'width': '48%', 'display': 'inline-block', 'verticalAlign': 'top'}),
+        ], className="input-card"),
         
+        # Return Scenarios Card
         html.Div([
-            # Return Scenarios
             create_scenario_inputs()
-        ], style={'width': '48%', 'display': 'inline-block', 'verticalAlign': 'top', 'marginLeft': '4%'}),
-        
-        # Cashflows Section (full width)
-        html.Div([
-            create_cashflow_section()
-        ], style={'clear': 'both', 'marginTop': '2rem'})
-    ])
+        ], className="input-card")
+    ], className="input-grid")

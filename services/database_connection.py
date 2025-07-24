@@ -12,7 +12,6 @@ class DatabaseConnection:
         db_host = "bcinvestment-sqlmi-adp-pro-01.f89163b05af0.database.windows.net"
         db_name = "RawAMR" 
         
-        # Create connection string using the same format that worked in test
         self.connection_string = (
             f"DRIVER={{ODBC Driver 17 for SQL Server}};"
             f"SERVER={db_host};"
